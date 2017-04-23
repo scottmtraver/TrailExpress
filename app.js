@@ -6,7 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 
+// Primart Routes
 var index = require('./routes/index');
+var registration = require('./routes/registration');
+var series = require('./routes/series');
 
 var app = express();
 
@@ -23,7 +26,10 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Route mappings (capitalization)
 app.use('/', index);
+app.use('/Registration', registration);
+app.use('/Series', series);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
