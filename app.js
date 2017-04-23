@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
+var extend = require('extend');
+var moment = require('moment');
+var _ = require('underscore');
 
 // Primart Routes
 var index = require('./routes/index');
@@ -25,6 +28,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+var base = {
+  title: 'Wasatch Trail Series',
+}
+
+var sponsorsModel = require('./models/sponsor');
+
+function pageTemplate (req, res, next) {
+  sponsorsModel.findAll().then(function (sponsors) {
+    req.base = {};
+    extend(true, req.base, base);
+    req.base.sponsors = _.sample(sponsors, 10);
+    req.base.allSponsors = sponsors;
+    next();
+  });
+}
+
+app.use(pageTemplate);
 
 // Route mappings (capitalization)
 app.use('/', index);
