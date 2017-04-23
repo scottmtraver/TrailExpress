@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ title }}</title>
+    <meta name="description" content="Wasatch Trail Run Series - The premiere Utah trail running series around the Wasatch mountains with over 6 locations and races ranging from 5k to half marathon">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation-flex.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+    {{#if ENV_DEVELOPMENT}}
+      <script src="http://localhost:35729/livereload.js"></script>
+    {{/if}}
   </head>
   <body>
-    {{{body}}}
+
+    <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle></button>
+      <div class="title-bar-title">Menu</div>
+      <a class="" href="/">
+        <img src="/images/logoWhite.png" alt="logo" class="mobile-logo" />
+        <h1 class="mobile-logo-link">Home</h1>
+      </a>
+    </div>
+
+    <div class="top-bar" id="example-menu">
+      <div class="top-bar-left show-for-medium">
+        <ul class="menu">
+          <a class="menu-text" href="/">
+            <img src="/images/logoWhite.png" alt="logo" class="logo" />
+            <h1 class="logo-link">Home</h1>
+          </a>
+        </ul>
+      </div>
+
+      <div class="top-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li><a href="/Results">Race Schedule</a></li>
+          <li><a href="/Gallery" class="promoted-link">Race Photos!</a></li>
+          <li><a href="/Registration">Registration / Discounted Race Pass</a></li>
+          <br class="show-for-small-only"/>
+          <br class="show-for-medium-only"/>
+          <li><a href="/Series">Categories & Points</a></li>
+          <li><a href="/Results">Results</a></li>
+          <li><a href="/Sponsors">Sponsors</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mobile-title show-for-small-only">
+      <h2>Wasatch Trail Run Series</h2>
+    </div>
+    <div class="hero-image">
+      <h1 class="show-for-medium">Wasatch Trail Run Series</h1>
+      <!--
+      <img src="/img/salomon-logo-white.png" alt="logo" class="home-sponsor home-sponsor-right show-for-medium" />
+      <img src="/img/north-face-red.png" alt="logo" class="home-sponsor home-sponsor-left show-for-medium" style="opacity:.75" />
+      -->
+    </div>
+    <div class="main">
+
+      {{{body}}}
+
+    </div>
+    <div class="footer">
+      <span>Website by: <a target="_blank" href="http://www.highpeaksolutions.com">High Peak Solutions</a></span>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="/javascripts/owl.carousel.js"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.1.2/foundation.min.js"></script>
+    <script src="/javascripts/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script src="/javascripts/client.js"></script>
   </body>
 </html>
