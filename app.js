@@ -11,6 +11,7 @@ var _ = require('underscore');
 
 // Primart Routes
 var index = require('./routes/index');
+var results = require('./routes/results');
 var registration = require('./routes/registration');
 var series = require('./routes/series');
 
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route mappings (capitalization)
 app.use('/', index);
+app.use('/results', results);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,50 @@
+<div class="row sponsor-main">
+  <div class="small-12 columns">
+    <h4>All Races</h4>
+    <table class="races-table" href="#Races">
+      <thead>
+        <tr>
+          <th class="show-for-large">Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th></th>
+        </th>
+      </thead>
+      <tbody>
+        {{#each races }}
+        {{#if nextRace}}
+          <tr class="next-race">
+        {{else}}
+          <tr>
+        {{/if}}
+            <td class="show-for-large">{{ name }}</td>
+            <td class="date-slash">{{ date }}</td>
+            <td>{{ start_time }}</td>
+            <td>{{ venue.name }}</td>
+            <td>
+              {{#if resultsUrl }}
+                <a href="/race/{{ seodate }}">Results</a>
+              {{else}}
+                <a href="/race/{{ seodate }}">Info</a>
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <!--
+    <a class="old-results-link" href="/2016Results">2016 Results</a>
+    <a class="old-results-link" href="http://old.runontrails.com/Race_Results.html">2015 Results</a>
+    -->
+  </div>
+  <div class="small-12 columns">
+    <hr/>
+    {{#each sponsors }}
+    <a href="{{ link_url }}" target="_blank" class="bottom-sponsor">
+      <img class="sponsor-thumbnail" src="{{ image_url }}"/>
+    </a>
+    {{/each}}
+  </div>
+</div>
+
