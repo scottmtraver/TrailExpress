@@ -29,28 +29,8 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-var base = {
-  title: 'Wasatch Trail Series',
-}
-
-var sponsorsModel = require('./models/sponsor');
-
-function pageTemplate (req, res, next) {
-  sponsorsModel.findAll().then(function (sponsors) {
-    req.base = {};
-    extend(true, req.base, base);
-    req.base.sponsors = _.sample(sponsors, 10);
-    req.base.allSponsors = sponsors;
-    next();
-  });
-}
-
-app.use(pageTemplate);
-
 // Route mappings (capitalization)
 app.use('/', index);
-app.use('/Registration', registration);
-app.use('/Series', series);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

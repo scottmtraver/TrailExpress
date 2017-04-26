@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "~1.17.1",
     "config": "^1.25.1",
     "cookie-parser": "~1.4.3",
@@ -17,9 +18,8 @@
     "less-middleware": "~2.2.0",
     "moment": "^2.18.1",
     "morgan": "~1.8.1",
-    "pg": "^6.1.5",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^3.30.4",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0",
     "serve-favicon": "~2.4.2",
     "underscore": "^1.8.3"
   }
