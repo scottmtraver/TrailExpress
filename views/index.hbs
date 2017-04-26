@@ -1,39 +1,30 @@
 <div class="row show-for-medium">
   <div class="medium-11 medium-centered columns">
-    <div class="owl-carousel hero-flipper"> 
+    <div class="owl-carousel hero-flipper">
       {{#each cards}}
-        <div class="item">
-          <div class="card row">
-            <img class="card-background" src="{{image_url}}" alt="Running!" />
-            <div class="medium-12 columns">
-              <h3>{{{ content }}}</h3>
-            </div>
-            <!--
-            <div class="medium-4 columns">
-              <img class="card-image" src="/uploads/{{ homepage.card1Image }}" alt="Trails" />
-            </div>
-            -->
+      <div class="item">
+        <div class="card row">
+          <img class="card-background" src="{{image_url}}" alt="Running!" />
+          <div class="medium-12 columns">
+            <h3>{{{ content }}}</h3>
           </div>
         </div>
+      </div>
       {{/each}}
     </div>
   </div>
 </div>
 <div class="row show-for-small-only">
   <div class="medium-11 medium-centered columns">
-    <div class="owl-carousel hero-flipper-mobile"> 
+    <div class="owl-carousel hero-flipper-mobile">
+      {{#each cards}}
       <div class="hero-flipper-item-mobile">
-        <img class="card-background" src="/images/solitudecard.jpg" alt="Running!" />
+        <img class="card-background" src="{{ image_url }}" alt="Running!" />
         <div class="medium-12 columns">
-            <h3>{{{ homepage.card1Text }}}</h3>
+          <h3>{{{ content }}}</h3>
         </div>
       </div>
-      <div class="hero-flipper-item-mobile">
-        <img class="card-background" src="/images/solitudecard.jpg" alt="Running!" />
-        <div class="medium-12 columns">
-            <h3>{{{ homepage.card2Text }}}</h3>
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
 </div>
@@ -58,12 +49,10 @@
           </a>
           <hr/>
           <a class="social-link" href="https://www.facebook.com/Wasatch-Trail-Run-Series-wwwRunOnTrailscom-247726315344070" target="_blank">
-            <i class="fi-social-facebook"></i>
-            Facebook
+            <i class="fi-social-facebook"></i> Facebook
           </a>
           <a class="social-link" href="mailto:info@runontrails.com" target="_top">
-            <i class="fi-mail"></i>
-            Email
+            <i class="fi-mail"></i> Email
           </a>
         </div>
         <div class="medium-3 small-12 columns">
@@ -73,8 +62,8 @@
           <div class="row">
             <div class="small-6 columns">
               <img src="/images/north-face-red.png" alt="logo" class="home-sponsor-below-video" />
-              </div>
-              <div class="small-6 columns">
+            </div>
+            <div class="small-6 columns">
             </div>
           </div>
         </div>
@@ -95,11 +84,10 @@
               <th>Time</th>
               <th>Location</th>
               <th></th>
-            </th>
+              </th>
           </thead>
           <tbody>
-            {{#each races }}
-            {{#if nextRace}}
+            {{#each races }} {{#if nextRace}}
             <tr class="next-race">
               {{else}}
               <tr>
@@ -110,27 +98,25 @@
                 <td>{{ venue.name }}</td>
                 <td>
                   {{#if resultsUrl }}
-                  <a href="/race/{{ seodate }}">Results</a>
-                  {{else}}
-                  <a href="/race/{{ seodate }}">Info</a>
-                  {{/if}}
+                  <a href="/race/{{ seodate }}">Results</a> {{else}}
+                  <a href="/race/{{ seodate }}">Info</a> {{/if}}
                 </td>
               </tr>
               {{/each}}
-            </tbody>
-          </table>
-        </div>
-        <div class="medium-3 small-12 columns right-sponsors">
-          <!-- 
-          <h2>Sponsors</h2>
-          <hr/>
-          <a href="{{ url }}" target="_blank" class="side-sponsor">
-            <img class="sponsor-thumbnail" src="/uploads/{{ logoUrl }}"/>
-          </a>
-          -->
-        </div>
+          </tbody>
+        </table>
+      </div>
+      <div class="medium-3 small-12 columns right-sponsors">
+        <h2>Sponsors</h2>
+        <hr/>
+        {{#each sponsors }}
+        <a href="{{ link_url }}" target="_blank" class="side-sponsor">
+          <img class="sponsor-thumbnail" src="{{ image_url }}" />
+        </a>
+        {{/each}}
       </div>
     </div>
   </div>
+</div>
 
 </div>
