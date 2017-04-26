@@ -33,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Route mappings (capitalization)
 app.use('/', index);
 app.use('/results', results);
+app.use('/registration', registration);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
