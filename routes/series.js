@@ -1,13 +1,23 @@
 var express = require('express');
 var router = express.Router();
+var extend = require('extend');
+var rp = require('request-promise');
+var Promise = require('bluebird');
+var _ = require('lodash');
 
-/* GET home page. */
+/* GET race list page. */
 router.get('/', function(req, res, next) {
-  /*
-  page.findOne({ where: { id: '2' } }).then(function (data) {
-    res.render('series', { title: 'Express', data: data });
+  var seriesRequest = rp('http://localhost:3001/api/pages/2');
+  var sponsorRequest = rp('http://localhost:3001/api/sponsors');
+  Promise.all([seriesRequest, sponsorRequest]).then(function (data) {
+    var series = JSON.parse(data[0]).data.attributes;
+    var sponsors = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 3);
+    res.render('series', { 
+      title: 'Wasatch Trail Series Season Pass',
+      series: series,
+      sponsors: sponsors
+    })
   });
-  */
 });
 
 module.exports = router;

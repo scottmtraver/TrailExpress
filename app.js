@@ -14,6 +14,7 @@ var index = require('./routes/index');
 var results = require('./routes/results');
 var registration = require('./routes/registration');
 var series = require('./routes/series');
+var sponsors = require('./routes/sponsors');
 
 var app = express();
 
@@ -34,6 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/results', results);
 app.use('/registration', registration);
+app.use('/series', series);
+app.use('/sponsors', sponsors);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
