@@ -1,2 +1,34 @@
-<h1>{{title}}</h1>
-{{data.title}}
+<div class="row sponsor-main">
+  <div class="medium-8 small-12 columns">
+    {{{ registration.content }}}
+    <img src="{{ registration.image_url }}" alt="Glass" class="show-for-small-only" />
+    <a name="Pass"></a>
+    <hr/>
+    <h3>Get Your Race Pass!</h3>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="HNJMCS263ME6L">
+      <table>
+        <tr><td><input type="hidden" name="on0" value="Type of Pass">Type of Pass</td></tr><tr><td><select name="os0">
+              <option value="Adult">Adult $120.00 USD</option>
+              <option value="College Student">College Student $110.00 USD</option>
+              <option value="Youth (under 18)">Youth (under 18) $100.00 USD</option>
+        </select> </td></tr>
+        <tr><td><input type="hidden" name="on1" value="Type Name of Pass Holder">Type Name of Pass Holder</td></tr><tr><td><input type="text" name="os1" maxlength="200"></td></tr>
+      </table>
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+  <div class="medium-3 small-12 columns right-sponsors">
+    <img src="{{ registration.image_url }}" alt="Glass" class="show-for-medium" />
+    <h3>Sponsors</h3>
+    <hr/>
+    {{#each sponsors}}
+      <a href="{{ link_url }}" target="_blank" class="side-sponsor">
+        <img class="sponsor-thumbnail" src="{{ image_url }}"/>
+      </a>
+    {{/each}}
+  </div>
+</div>

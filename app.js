@@ -5,11 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
+var extend = require('extend');
+var moment = require('moment');
+var _ = require('underscore');
 
 // Primart Routes
 var index = require('./routes/index');
+var results = require('./routes/results');
 var registration = require('./routes/registration');
 var series = require('./routes/series');
+var sponsors = require('./routes/sponsors');
+var race = require('./routes/race');
 
 var app = express();
 
@@ -28,8 +34,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route mappings (capitalization)
 app.use('/', index);
-app.use('/Registration', registration);
-app.use('/Series', series);
+app.use('/results', results);
+app.use('/registration', registration);
+app.use('/series', series);
+app.use('/sponsors', sponsors);
+app.use('/race', race);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

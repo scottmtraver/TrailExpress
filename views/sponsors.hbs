@@ -1,0 +1,16 @@
+<div class="row sponsor-main">
+  <div class="large-12 columns">
+    <h4>Thanks to all our sponsors!</h4>
+    <hr />
+    <div class="small-up-2 medium-up-3 large-up-4">
+      {{#each sponsors }}
+      <div class="column">
+        <a href="{{ link_url }}" target="_blank">
+          <img class="sponsor-thumbnail" src="{{ image_url }}" alt="Logo">
+        </a>
+        <h5>{{ name }}</h5>
+      </div>
+    {{/each}}
+    </div>
+  </div>
+</div>
