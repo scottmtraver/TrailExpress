@@ -4,6 +4,7 @@ var extend = require('extend');
 var rp = require('request-promise');
 var Promise = require('bluebird');
 var _ = require('lodash');
+var moment = require('moment');
 
 function parseRacesWithVenues (racesData) {
   var ret = []
@@ -13,6 +14,8 @@ function parseRacesWithVenues (racesData) {
 
   _.forEach(racesData.data, function (r) {
     var race = r.attributes;
+    var seodate = moment(race.date).format("MMM D YYYY").replace(/\s+/g, '-');
+    race.seodate = seodate;
     race.venue = _.find(venues, function (v) { return v.id == r.relationships.venue.data.id; }).venue;
     ret.push(race)
   });

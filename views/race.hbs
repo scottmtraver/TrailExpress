@@ -1,0 +1,75 @@
+{{#if race }}
+<div class="row race-main">
+  <div classs="row">
+
+    <div class="small-12 large-4 columns race-info">
+      <div class="row">
+        <div class="small-12 columns">
+          <h3 class="date">{{ race.date }}</h3>
+        </div>
+        <div class="small-12 columns">
+          <span>Location: <a style="display:inline;" href="{{ race.venue.directions_url }}">{{ race.venue.name }}</a></span>
+        </div>
+        <div class="small-12 columns">
+          <span>Registration: {{ race.registration_time }}</span>
+        </div>
+        <div class="small-12 columns">
+          <span>Race Start: {{ race.start_time }}</span>
+        </div>
+        <div class="small-12 columns">
+          <span>Cost: {{ race.cost }}</span>
+        </div>
+        <div class="small-12 columns">
+          <span>Distance: {{ race.distance }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="small-12 large-4 columns">
+      <a href="{{ race.venue.link_url }}" target="_blank">
+        <img class="venue-image" src="{{ race.venue.image_url }}" alt="Venue" />
+      </a>
+      <h4 class="race-special">{{ race.name }}</h4>
+    </div>
+    <div class="large-4 columns sponsor show-for-large">
+      <h4>Sponsor</h4>
+      {{#if race.sponsor }}
+        <a href="{{ race.sponsor.link_url }}" target="_blank">
+          <img class="sponsor-image" src="{{ race.sponsor.image_url }}" alt="Sponsor" />
+        </a>
+        <h4>{{ race.sponsor.name }}</h4>
+      {{else}}
+        <a href="{{ raceSponsor.link_url }}" target="_blank">
+          <img class="sponsor-image" src="{{ raceSponsor.image_url }}" alt="Sponsor" />
+        </a>
+        <h4>{{ raceSponsor.name }}</h4>
+      {{/if}}
+    </div>
+  </div>
+  <hr/>
+</div>
+<div class="row race-main">
+{{#if race.results_url }}
+  <div class="small-12 columns">
+  <h2 style="text-align:center;">Results:
+    <a href="/uploads/{{ race.results_url }}" target="_blank">Click Here</a>
+  </h2>
+  </br>
+</div>
+{{/if}}
+  <div class="small-12 columns" style="overflow:scroll;">
+    <h4>Course:</h4>
+    <p>
+      {{{ race.course_description }}}
+    </p>
+  </div>
+  <div class="small-12 columns">
+    {{#if race.image_url }}
+      <img class="course-image" src="{{ race.image_url }}" alt="Course" />
+    {{/if}}
+  </div>
+</div>
+</div>
+{{/if}}
+
+
+
