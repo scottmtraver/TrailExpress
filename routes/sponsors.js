@@ -4,8 +4,7 @@ var extend = require('extend');
 var rp = require('request-promise');
 var Promise = require('bluebird');
 var _ = require('lodash');
-var config = require('config');
-var apiurl = config.get('rootapi');
+var apiurl = process.env.API_URL;
 
 /* GET race list page. */
 router.get('/', function(req, res, next) {

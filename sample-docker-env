@@ -1,0 +1,3 @@
+# rename to docker-env
+API_URL=http://localhost/api
+PORT=3000

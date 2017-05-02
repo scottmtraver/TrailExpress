@@ -5,8 +5,7 @@ var rp = require('request-promise');
 var Promise = require('bluebird');
 var _ = require('lodash');
 var moment = require('moment');
-var config = require('config');
-var apiurl = config.get('rootapi');
+var apiurl = process.env.API_URL;
 
 function parseRacesWithVenues (racesData) {
   var ret = []
