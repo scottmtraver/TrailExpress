@@ -4,6 +4,8 @@ var extend = require('extend');
 var rp = require('request-promise');
 var Promise = require('bluebird');
 var _ = require('lodash');
+var config = require('config');
+var apiurl = config.get('rootapi');
 
 function parseRacesWithVenues (racesData) {
   var ret = []
@@ -21,10 +23,10 @@ function parseRacesWithVenues (racesData) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var homeRequest = rp('http://localhost:3001/api/pages/1');
-  var raceRequest = rp('http://localhost:3001/api/races?include=venue');
-  var cardRequest = rp('http://localhost:3001/api/cards?filter[is_active]=true');
-  var sponsorRequest = rp('http://localhost:3001/api/sponsors');
+  var homeRequest = rp(apiurl + 'pages/1');
+  var raceRequest = rp(apiurl + 'races?include=venue');
+  var cardRequest = rp(apiurl + 'cards?filter[is_active]=true');
+  var sponsorRequest = rp(apiurl + 'sponsors');
   Promise.all([homeRequest, raceRequest, cardRequest, sponsorRequest]).then(function (data) {
     var homepage = JSON.parse(data[0]).data.attributes;
     var races = parseRacesWithVenues(JSON.parse(data[1]));

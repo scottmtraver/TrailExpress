@@ -4,11 +4,13 @@ var extend = require('extend');
 var rp = require('request-promise');
 var Promise = require('bluebird');
 var _ = require('lodash');
+var config = require('config');
+var apiurl = config.get('rootapi');
 
 /* GET race list page. */
 router.get('/', function(req, res, next) {
-  var registrationRequest = rp('http://localhost:3001/api/pages/3');
-  var sponsorRequest = rp('http://localhost:3001/api/sponsors');
+  var registrationRequest = rp(apiurl + 'pages/3');
+  var sponsorRequest = rp(apiurl + 'sponsors');
   Promise.all([registrationRequest, sponsorRequest]).then(function (data) {
     var registration = JSON.parse(data[0]).data.attributes;
     var sponsors = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 3);

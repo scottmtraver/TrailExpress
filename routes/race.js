@@ -5,6 +5,8 @@ var rp = require('request-promise');
 var Promise = require('bluebird');
 var _ = require('lodash');
 var moment = require('moment');
+var config = require('config');
+var apiurl = config.get('rootapi');
 
 function parseRacesWithVenuesAndSponsors (racesData) {
   var ret = []
@@ -29,8 +31,8 @@ function parseRacesWithVenuesAndSponsors (racesData) {
 
 /* GET race list page. */
 router.get('/:date', function(req, res, next) {
-  var raceRequest = rp('http://localhost:3001/api/races?include=sponsor&include=venue');
-  var sponsorRequest = rp('http://localhost:3001/api/sponsors');
+  var raceRequest = rp(apiurl + 'races?include=sponsor&include=venue');
+  var sponsorRequest = rp(apiurl + 'sponsors');
   Promise.all([raceRequest, sponsorRequest]).then(function (data) {
     var races = parseRacesWithVenuesAndSponsors(JSON.parse(data[0]));
     var race = _.find(races, function (r) { 
