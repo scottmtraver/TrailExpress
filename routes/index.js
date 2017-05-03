@@ -20,6 +20,9 @@ function parseRacesWithVenues (racesData) {
     race.seodate = seodate;
     ret.push(race)
   });
+  ret.sort(function (a, b) {
+    return moment(a.date).isAfter(moment(b.date));
+  });
   return ret;
 }
 
