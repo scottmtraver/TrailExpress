@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
   var sponsorRequest = rp(apiurl + 'sponsors');
   Promise.all([raceRequest, sponsorRequest]).then(function (data) {
     var races = parseRacesWithVenues(JSON.parse(data[0]));
-    var sponsors = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 3);
+    var sponsors = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 6);
     res.render('results', { 
       title: 'Wasatch Trail Series Races',
       races: races,
