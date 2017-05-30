@@ -21,7 +21,7 @@ function parseRacesWithVenues (racesData) {
     ret.push(race)
   });
   ret.sort(function (a, b) {
-    return moment(a.date).isAfter(moment(b.date));
+    return moment.utc(a.date).diff(moment.utc(b.date));
   });
   return ret;
 }

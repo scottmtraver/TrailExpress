@@ -20,8 +20,10 @@ function parseRacesWithVenues (racesData) {
     race.seodate = seodate;
     ret.push(race)
   });
+  // only display current year's races
+  _.remove(ret, function (r) { return moment(r.date).year() != moment().year(); })
   ret.sort(function (a, b) {
-    return moment(a.date).isAfter(moment(b.date));
+    return moment.utc(a.date).diff(moment.utc(b.date));
   });
   return ret;
 }
