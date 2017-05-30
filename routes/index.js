@@ -32,7 +32,7 @@ function parseRacesWithVenues (racesData) {
 router.get('/', function(req, res, next) {
   var homeRequest = rp(apiurl + 'pages/1');
   var raceRequest = rp(apiurl + 'races?include=venue');
-  var cardRequest = rp(apiurl + 'cards?filter[is_active]=true');
+  var cardRequest = rp(apiurl + 'cards?filter[is_active]=true&sort=order');
   var sponsorRequest = rp(apiurl + 'sponsors');
   Promise.all([homeRequest, raceRequest, cardRequest, sponsorRequest]).then(function (data) {
     var homepage = JSON.parse(data[0]).data.attributes;
