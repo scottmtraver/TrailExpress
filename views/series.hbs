@@ -1,5 +1,8 @@
 <div class="row sponsor-main">
   <div class="medium-8 small-12 columns">
+    {{#if series.results_url}}
+      <h4>Current Series Standings: <a href="{{ series.results_url }}" target="_blank">Results</a></h4>
+    {{/if}}
     {{{ series.content }}}
     <img src="{{ series.image_url }}" alt="Glass" class="show-for-small-only" />
   </div>
