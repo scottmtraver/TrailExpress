@@ -6,6 +6,7 @@ var Promise = require('bluebird');
 var _ = require('lodash');
 var moment = require('moment');
 var apiurl = process.env.API_URL;
+var imageUtil = require('../utilities/imageSizer.js');
 
 function parseRacesWithVenues (racesData) {
   var ret = []
@@ -33,6 +34,7 @@ router.get('/', function(req, res, next) {
   Promise.all([raceRequest, sponsorRequest]).then(function (data) {
     var races = parseRacesWithVenues(JSON.parse(data[0]));
     var sponsors = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 6);
+    imageUtil.processImageWidth(sponsors, 200);
     res.render('results', { 
       title: 'Wasatch Trail Series Races',
       races: races,
