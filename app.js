@@ -34,6 +34,14 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// provide environment to handlebars
+app.use(function(req, res, next) {
+  res.locals.isDevelopment = req.app.get('env') === 'development';
+  res.locals.isTest = req.app.get('env') === 'test';
+  res.locals.isProduction = req.app.get('env') === 'production';
+  next();
+});
+
 // Route mappings (capitalization)
 app.use('/', index);
 app.use('/results', results);

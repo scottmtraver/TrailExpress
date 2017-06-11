@@ -11,8 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation-flex.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
-    {{#if ENV_DEVELOPMENT}}
+    {{#if isDevelopment }}
       <script src="http://localhost:35729/livereload.js"></script>
+    {{/if}}
+    {{#if isTest }}
+      <style type="text/css">
+      body {
+        border-top: 5px solid orange;
+      }
+      </style>
     {{/if}}
   </head>
   <body>
