@@ -14,6 +14,16 @@ function parseRacesWithVenues (racesData) {
         return { id: v.id, venue: v.attributes };
       });
 
+  racesData.data.sort(function (a, b) {
+    return moment.utc(a.date).isAfter(moment.utc(b.date));
+  });
+
+  var next = _.findLast(racesData.data, function (r) {
+    return moment(r.attributes.date).isAfter(moment(new Date()));
+  });
+  if(next) {
+    next.attributes.nextRace = true;
+  }
   _.forEach(racesData.data, function (r) {
     var race = r.attributes;
     var seodate = moment(race.date).format("MMM D YYYY").replace(/\s+/g, '-');
