@@ -1,0 +1,12 @@
+<div class="row sponsor-main">
+  <div class="large-12 columns">
+    <h4>Thanks to all our sponsors!</h4>
+    <hr />
+    <div class="small-up-2 medium-up-3 large-up-3" id="gallery">
+      <div class="column" v-for="item in list">
+        <img class="gallery-image" src="\{{ item.url }}" alt="Race Photo" />
+      </div>
+      <infinite-loading :on-infinite="onInfinite"></infinite-loading>
+    </div>
+  </div>
+</div>

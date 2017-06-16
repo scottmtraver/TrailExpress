@@ -18,6 +18,7 @@ var registration = require('./routes/registration');
 var series = require('./routes/series');
 var sponsors = require('./routes/sponsors');
 var race = require('./routes/race');
+var gallery = require('./routes/gallery');
 
 var app = express();
 
@@ -49,6 +50,7 @@ app.use('/registration', registration);
 app.use('/series', series);
 app.use('/sponsors', sponsors);
 app.use('/race', race);
+app.use('/gallery', gallery);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

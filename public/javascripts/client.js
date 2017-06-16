@@ -56,21 +56,24 @@ function onPlayerStateChange(event) {
 
 //gallery code
 if(Vue && document.getElementById('gallery')) {
-  var page = 1;
+  var page = 0;
+  var pagesize = 1;
   var loading = true;
   var loadGallery = function () {
     $.get(
-      "/api/gallery",
-      { page : page },
+      //"http://localhost:3001/api/photos",
+      "http://localhost:3001/api/photos?page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
+      //{ page : page },
       function(images) {
-        if(!images.length) {
+        if(!images.data.length) {
           v.$broadcast('$InfiniteLoading:noMore');
           loading = false;
           return;
         }
         page++;
-        images.forEach(function (image) {
-          v.list.push(image);
+        images.data.forEach(function (image) {
+          console.log(image.attributes.image_url)
+          v.list.push({ url: image.attributes.image_url });
         });
         v.$broadcast('$InfiniteLoading:loaded');
       }
