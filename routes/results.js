@@ -14,20 +14,11 @@ function parseRacesWithVenues (racesData) {
         return { id: v.id, venue: v.attributes };
       });
 
-  racesData.data.sort(function (a, b) {
-    return moment.utc(a.date).isAfter(moment.utc(b.date));
-  });
-
-  var next = _.findLast(racesData.data, function (r) {
-    return moment(r.attributes.date).isAfter(moment(new Date()));
-  });
-  if(next) {
-    next.attributes.nextRace = true;
-  }
   _.forEach(racesData.data, function (r) {
     var race = r.attributes;
     var seodate = moment(race.date).format("MMM D YYYY").replace(/\s+/g, '-');
     race.seodate = seodate;
+    race.isFuture = moment(race.date).isAfter(moment(new Date()).subtract(1, 'days'), 'date');
     race.venue = _.find(venues, function (v) { return v.id == r.relationships.venue.data.id; }).venue;
     ret.push(race)
   });

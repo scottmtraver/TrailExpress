@@ -96,3 +96,5 @@ if(Vue && document.getElementById('gallery')) {
   });
   loadGallery();
 }
+
+$(".is-future:first").addClass("first");

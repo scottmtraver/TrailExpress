@@ -13,8 +13,8 @@
       </thead>
       <tbody>
         {{#each races }}
-        {{#if nextRace}}
-          <tr class="next-race">
+        {{#if isFuture}}
+          <tr class="is-future">
         {{else}}
           <tr>
         {{/if}}

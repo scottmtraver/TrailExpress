@@ -13,20 +13,12 @@ function parseRacesWithVenues (racesData) {
   var venues = _.map(racesData.included, function (v) {
         return { id: v.id, venue: v.attributes };
       });
-  racesData.data.sort(function (a, b) {
-    return moment.utc(a.date).isAfter(moment.utc(b.date));
-  });
 
-  var next = _.findLast(racesData.data, function (r) {
-    return moment(r.attributes.date).isAfter(moment(new Date()));
-  });
-  if(next) {
-    next.attributes.nextRace = true;
-  }
   _.forEach(racesData.data, function (r) {
     var race = r.attributes;
     race.venue = _.find(venues, function (v) { return v.id == r.relationships.venue.data.id; }).venue;
     var seodate = moment(race.date).format("MMM D YYYY").replace(/\s+/g, '-');
+    race.isFuture = moment(race.date).isAfter(moment(new Date()).subtract(1, 'days'), 'date');
     race.seodate = seodate;
     ret.push(race)
   });

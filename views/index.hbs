@@ -86,12 +86,13 @@
               <th></th>
               </th>
           </thead>
-          <tbody>
-            {{#each races }} {{#if nextRace}}
-            <tr class="next-race">
+          <tbody class="races">
+            {{#each races }}
+              {{#if isFuture}}
+            <tr class="is-future">
               {{else}}
               <tr>
-                {{/if}}
+              {{/if}}
                 <td class="show-for-large">{{ name }}</td>
                 <td class="date-slash">{{ date }}</td>
                 <td>{{ start_time }}</td>
