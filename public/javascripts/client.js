@@ -61,9 +61,8 @@ if (Vue && document.getElementById('gallery')) {
   var loading = true;
   var loadGallery = function () {
     $.get(
-      //"http://localhost:3001/api/photos",
-      "https://api.runontrails.com/api/photos?page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
-      //{ page : page },
+      //"http://api.runontrails.com/api/photos?sort=-date&page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
+      "http://localhost:3001/api/photos?sort=-date&page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
       function (images) {
         if (!images.data.length) {
           v.$broadcast('$InfiniteLoading:noMore');
