@@ -302,3 +302,33 @@ and (orientation: landscape) {
   font-size: 18px;
   margin-right: 50px;
 }
+
+.gallery-container {
+  position: relative;
+}
+.gallery-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .3s ease;
+}
+
+.gallery-container:hover .gallery-overlay {
+  height: 15%;
+}
+
+.gallery-text {
+  white-space: nowrap; 
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}

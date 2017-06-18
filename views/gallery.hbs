@@ -3,8 +3,13 @@
     <h4>Thanks to all our sponsors!</h4>
     <hr />
     <div class="small-up-2 medium-up-3 large-up-3" id="gallery">
-      <div class="column" v-for="item in list">
+      <div class="column gallery-container" v-for="item in list">
         <img class="gallery-image" src="\{{ item.url }}" alt="Race Photo" />
+        <div class="gallery-overlay">
+          <div class="gallery-text">
+            <a class="button" v-on:click="share(item)">SHARE</a>
+          </div>
+        </div>
       </div>
       <infinite-loading :on-infinite="onInfinite"></infinite-loading>
     </div>

@@ -18,7 +18,7 @@ $(document).ready(function () {
     var formatted = moment(ele.innerHTML).utc().format('M/D/YYYY');
     ele.innerHTML = formatted;
   });
-}); 
+});
 $('.date').each(function (i, ele) {
   var formatted = moment(ele.innerHTML).utc().format('dddd MMMM Do');
   ele.innerHTML = formatted;
@@ -55,25 +55,26 @@ function onPlayerStateChange(event) {
 }
 
 //gallery code
-if(Vue && document.getElementById('gallery')) {
+if (Vue && document.getElementById('gallery')) {
   var page = 0;
   var pagesize = 1;
   var loading = true;
   var loadGallery = function () {
     $.get(
       //"http://localhost:3001/api/photos",
-      "http://localhost:3001/api/photos?page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
+      "https://api.runontrails.com/api/photos?page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
       //{ page : page },
-      function(images) {
-        if(!images.data.length) {
+      function (images) {
+        if (!images.data.length) {
           v.$broadcast('$InfiniteLoading:noMore');
           loading = false;
           return;
         }
         page++;
         images.data.forEach(function (image) {
-          console.log(image.attributes.image_url)
-          v.list.push({ url: image.attributes.image_url });
+          var formatUrl = image.attributes.image_url; 
+          formatUrl = formatUrl.split('upload/').join('upload/c_scale,w_' + 350 + '/');
+          v.list.push({ url: formatUrl });
         });
         v.$broadcast('$InfiniteLoading:loaded');
       }
@@ -83,13 +84,27 @@ if(Vue && document.getElementById('gallery')) {
   var v = new Vue({
     el: '#gallery',
     data: {
-      list: []
+      list: [],
+      share: function (item) {
+        console.log(item.url)
+        //FB SHARE
+        FB.ui({
+          method: 'share_open_graph',
+          action_type: 'og.shares',
+          action_properties: JSON.stringify({
+            object: {
+              'og:title': 'Wasatch Trail Series',
+              'og:image': item.url
+            }
+          })
+        });
+      }
     },
     ready: function () {
     },
     methods: {
       onInfinite: function () {
-        if(loading) {
+        if (loading) {
           setTimeout(function () {
             loadGallery();
           }.bind(this), 500);
