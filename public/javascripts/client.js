@@ -28,40 +28,45 @@ $('.readmore-opener').click(function () {
   $(this).hide();
 });
 
-// This code loads the IFrame Player API code asynchronously
-var tag = document.createElement('script');
-tag.src = "http://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+try {
+  // This code loads the IFrame Player API code asynchronously
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// This code is called by the YouTube API to create the player object
-function onYouTubeIframeAPIReady(event) {
-  player = new YT.Player('youTubePlayer', {
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-function onPlayerReady(event) {
-  // do nothing, no tracking needed
-}
-function onPlayerStateChange(event) {
-  // track when user clicks to Play
-  if (event.data == YT.PlayerState.PLAYING) {
-    _gaq.push(['_trackEvent', 'Videos', 'Play', 'Homepage Video']);
+  // This code is called by the YouTube API to create the player object
+  function onYouTubeIframeAPIReady(event) {
+    player = new YT.Player('youTubePlayer', {
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
   }
+
+  function onPlayerReady(event) {
+    // do nothing, no tracking needed
+  }
+  function onPlayerStateChange(event) {
+    // track when user clicks to Play
+    if (event.data == YT.PlayerState.PLAYING) {
+      _gaq.push(['_trackEvent', 'Videos', 'Play', 'Homepage Video']);
+    }
+  }
+
+} catch (e) {
+
 }
 
 //gallery code
 if (Vue && document.getElementById('gallery')) {
   var page = 0;
-  var pagesize = 1;
+  var pagesize = 10;
   var loading = true;
   var loadGallery = function () {
     $.get(
-      "http://api.runontrails.com/api/photos?sort=-date&page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
+      "https://api.runontrails.com/api/photos?sort=-date&filter[is_active]=true&page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
       //"http://localhost:3001/api/photos?sort=-date&page[offset]=" + (page * pagesize) + "&page[limit]=" + pagesize,
       function (images) {
         if (!images.data.length) {
@@ -85,6 +90,7 @@ if (Vue && document.getElementById('gallery')) {
     data: {
       list: [],
       share: function (item) {
+        _gaq.push(['_trackEvent', 'Pictures', 'Share', 'Share Photo']);
         //FB SHARE
         FB.ui({
           method: 'share_open_graph',
