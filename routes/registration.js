@@ -10,7 +10,7 @@ var imageUtil = require('../utilities/imageSizer.js');
 /* GET race list page. */
 router.get('/', function(req, res, next) {
   var registrationRequest = rp(apiurl + 'pages/3');
-  var sponsorRequest = rp(apiurl + 'sponsors');
+  var sponsorRequest = rp(apiurl + 'sponsors?filter[is_active]=true');
   Promise.all([registrationRequest, sponsorRequest]).then(function (data) {
     var registration = JSON.parse(data[0]).data.attributes;
     imageUtil.processImageWidth([registration], 250);

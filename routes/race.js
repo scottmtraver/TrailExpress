@@ -31,7 +31,7 @@ function parseRacesWithVenuesAndSponsors (racesData) {
 /* GET race list page. */
 router.get('/:date', function(req, res, next) {
   var raceRequest = rp(apiurl + 'races?include=sponsor&include=venue');
-  var sponsorRequest = rp(apiurl + 'sponsors');
+  var sponsorRequest = rp(apiurl + 'sponsors?filter[is_active]=true');
   Promise.all([raceRequest, sponsorRequest]).then(function (data) {
     var races = parseRacesWithVenuesAndSponsors(JSON.parse(data[0]));
     var race = _.find(races, function (r) { 

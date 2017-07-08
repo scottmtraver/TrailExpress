@@ -35,7 +35,7 @@ router.get('/', function(req, res, next) {
   var homeRequest = rp(apiurl + 'pages/1');
   var raceRequest = rp(apiurl + 'races?include=venue');
   var cardRequest = rp(apiurl + 'cards?filter[is_active]=true&sort=order');
-  var sponsorRequest = rp(apiurl + 'sponsors');
+  var sponsorRequest = rp(apiurl + 'sponsors?filter[is_active]=true');
   Promise.all([homeRequest, raceRequest, cardRequest, sponsorRequest]).then(function (data) {
     var homepage = JSON.parse(data[0]).data.attributes;
     var races = parseRacesWithVenues(JSON.parse(data[1]));

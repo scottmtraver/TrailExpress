@@ -31,7 +31,7 @@ function parseRacesWithVenues (racesData) {
 /* GET race list page. */
 router.get('/', function(req, res, next) {
   var raceRequest = rp(apiurl + 'races?include=venue');
-  var sponsorRequest = rp(apiurl + 'sponsors');
+  var sponsorRequest = rp(apiurl + 'sponsors?filter[is_active]=true');
   Promise.all([raceRequest, sponsorRequest]).then(function (data) {
     var races = parseRacesWithVenues(JSON.parse(data[0]));
     var sponsors = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 6);

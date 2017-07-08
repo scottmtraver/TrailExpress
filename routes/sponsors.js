@@ -9,7 +9,7 @@ var imageUtil = require('../utilities/imageSizer.js');
 
 /* GET race list page. */
 router.get('/', function(req, res, next) {
-  var sponsorRequest = rp(apiurl + 'sponsors');
+  var sponsorRequest = rp(apiurl + 'sponsors?filter[is_active]=true');
   Promise.all([sponsorRequest]).then(function (data) {
     var sponsors = _.map(JSON.parse(data[0]).data, function (s) { return s.attributes; });
     imageUtil.processImageWidth(sponsors, 200);
