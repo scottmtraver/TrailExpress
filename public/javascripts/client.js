@@ -51,7 +51,7 @@ try {
   function onPlayerStateChange(event) {
     // track when user clicks to Play
     if (event.data == YT.PlayerState.PLAYING) {
-      _gaq.push(['_trackEvent', 'Videos', 'Play', 'Homepage Video']);
+      ga('send', 'event', 'Videos', 'Play', 'Homepage Video');
     }
   }
 
@@ -90,7 +90,7 @@ if (Vue && document.getElementById('gallery')) {
     data: {
       list: [],
       share: function (item) {
-        _gaq.push(['_trackEvent', 'Pictures', 'Share', 'Share Photo']);
+        ga('send', 'event', 'Pictures', 'Share', 'Share Photo');
         //FB SHARE
         FB.ui({
           method: 'share_open_graph',
