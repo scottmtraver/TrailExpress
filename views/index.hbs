@@ -57,7 +57,7 @@
         </div>
         <div class="medium-3 small-12 columns">
           <div class="flex-video">
-            {{{ homepage.video_url }}}
+            <div id="homepage-iframe"></div>
           </div>
           <div class="row">
             <div class="small-6 columns">
@@ -87,22 +87,19 @@
               </th>
           </thead>
           <tbody class="races">
-            {{#each races }}
-              {{#if isFuture}}
+            {{#each races }} {{#if isFuture}}
             <tr class="is-future">
               {{else}}
               <tr>
-              {{/if}}
+                {{/if}}
                 <td class="show-for-large">{{ name }}</td>
                 <td class="date-slash">{{ date }}</td>
                 <td>{{ start_time }}</td>
                 <td>{{ venue.name }}</td>
                 <td>
                   {{#if results_url }}
-                    <a href="/race/{{ seodate }}">Results</a>
-                  {{else}}
-                    <a href="/race/{{ seodate }}">Info</a>
-                  {{/if}}
+                  <a href="/race/{{ seodate }}">Results</a> {{else}}
+                  <a href="/race/{{ seodate }}">Info</a> {{/if}}
                 </td>
               </tr>
               {{/each}}
@@ -111,15 +108,49 @@
       </div>
       <div class="medium-3 small-12 columns right-sponsors">
         <h2>Sponsors</h2>
-        <hr/>
-        {{#each sponsors }}
+        <hr/> {{#each sponsors }}
         <a href="{{ link_url }}" target="_blank" class="side-sponsor">
           <img class="sponsor-thumbnail" src="{{ image_url }}" />
-        </a>
-        {{/each}}
+        </a> {{/each}}
       </div>
     </div>
   </div>
 </div>
 
+</div>
+
+<!-- The Modal -->
+<div id="campaign-video-modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Watch a Message from our sponsors and get extra tickets!</h3>
+    <div class="flex-video">
+      <div id="homepage-campaign"></div>
+    </div>
+  </div>
+</div>
+<div id="campaign-entry-modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Enter Your Bib Number and Last Name Below:</h4>
+    <p>
+      <label>Bib Number</label>
+      <input type="text" class="campaign-input"> 
+    </p>
+    <p>
+      <label>Last Name</label>
+      <input type="text" class="campaign-input"> 
+    </p>
+    <button id="submit-campaign" class="button">Submit</button>
+    <span class="campaign-error">Please Complete The Form</span>
+  </div>
+</div>
+<div id="campaign-success-modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Thank You For Supporting Our Sponsors!</h4>
+  </div>
 </div>

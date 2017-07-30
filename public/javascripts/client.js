@@ -29,35 +29,98 @@ $('.readmore-opener').click(function () {
 });
 
 try {
+  // https://developers.google.com/youtube/iframe_api_reference
   // This code loads the IFrame Player API code asynchronously
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-  // This code is called by the YouTube API to create the player object
-  function onYouTubeIframeAPIReady(event) {
-    player = new YT.Player('youTubePlayer', {
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  function onPlayerReady(event) {
-    // do nothing, no tracking needed
-  }
+  // Homepage video tracking
   function onPlayerStateChange(event) {
     // track when user clicks to Play
     if (event.data == YT.PlayerState.PLAYING) {
-      ga('send', 'event', 'Videos', 'Play', 'Homepage Video');
+      // ga('send', 'event', 'Videos', 'Play', 'Homepage Video');
     }
   }
 
+  // campaign video tracking
+  var tracked = false;
+  function campaignStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING) {
+      // add tracking here
+      // ga('send', 'event', 'Videos', 'Play', 'Campaign Video');
+    }
+
+    if (event.data == YT.PlayerState.ENDED) {
+      // reveal bib entry modal
+      $('#campaign-video-modal').hide();
+      $('#campaign-entry-modal').show();
+    }
+  }
+
+  // This code is called by the YouTube API to create the player object
+  //    after the API code downloads.
+  var player, campaign;
+  function onYouTubeIframeAPIReady() {
+    // check if there is an element with homepage player id
+    player = new YT.Player('homepage-iframe', {
+      height: '390',
+      width: '640',
+      // TODO SMT somehow inject video id and store video id in database
+      videoId: 'jvFEqMU0eyI',
+      events: {
+        'onReady': function () {},//noop
+        'onStateChange': onPlayerStateChange
+      }
+    });
+
+    campaign = new YT.Player('homepage-campaign', {
+      height: '390',
+      width: '640',
+      // TODO SMT somehow inject video id and store video id in database
+      videoId: 'SgDJ-000uAc',
+      playerVars: {
+            controls: 0,
+            disablekb: 1,
+            autoPlay: 0
+        },
+      events: {
+        'onReady': function () {},//noop
+        'onStateChange': campaignStateChange
+      }
+    });
+  }
 } catch (e) {
 
 }
+
+//campaign
+$('.close').click(function () {
+    $('#campaign-video-modal').hide();
+    $('#campaign-entry-modal').hide();
+    $('#campaign-success-modal').hide();
+});
+
+
+//initial show
+// cookie logic!
+$('#campaign-video-modal').show();
+
+$('#submit-campaign').click(function () {
+  var inputs = $('.campaign-input').toArray().map(function (ele, i) { return $(ele).val(); });
+  if (inputs[0] && inputs[1]) {
+    $('.campaign-error').hide()
+    $('#campaign-entry-modal').hide();
+    $('#campaign-success-modal').show();
+    setTimeout(function () {
+      $('#campaign-success-modal').hide();
+    }, 3000)
+    // post inputs to api
+  } else {
+    $('.campaign-error').show()
+  }
+}); 
 
 //gallery code
 if (Vue && document.getElementById('gallery')) {
