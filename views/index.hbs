@@ -61,6 +61,7 @@
           </div>
           <div class="row">
             <div class="small-6 columns">
+              <input id="page-video" type="hidden" value="{{ homepage.video_id }}" />
               <img src="/images/north-face-red.png" alt="logo" class="home-sponsor-below-video" />
             </div>
             <div class="small-6 columns">
@@ -119,6 +120,7 @@
 
 </div>
 
+{{#if campaign }}
 <!-- The Modal -->
 <div id="campaign-video-modal" class="modal">
   <!-- Modal content -->
@@ -131,17 +133,18 @@
   </div>
 </div>
 <div id="campaign-entry-modal" class="modal">
+  <input id="campaign-video" type="hidden" value="{{ campaign.video_id }}" />
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
     <h4>Enter Your Bib Number and Last Name Below:</h4>
     <p>
       <label>Bib Number</label>
-      <input type="text" class="campaign-input"> 
+      <input type="text" class="campaign-input" id="bib-input"> 
     </p>
     <p>
       <label>Last Name</label>
-      <input type="text" class="campaign-input"> 
+      <input type="text" class="campaign-input" id="lname-input"> 
     </p>
     <button id="submit-campaign" class="button">Submit</button>
     <span class="campaign-error">Please Complete The Form</span>
@@ -154,3 +157,4 @@
     <h4>Thank You For Supporting Our Sponsors!</h4>
   </div>
 </div>
+{{/if}}

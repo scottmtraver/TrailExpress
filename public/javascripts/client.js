@@ -64,63 +64,106 @@ try {
   var player, campaign;
   function onYouTubeIframeAPIReady() {
     // check if there is an element with homepage player id
-    player = new YT.Player('homepage-iframe', {
-      height: '390',
-      width: '640',
-      // TODO SMT somehow inject video id and store video id in database
-      videoId: 'jvFEqMU0eyI',
-      events: {
-        'onReady': function () {},//noop
-        'onStateChange': onPlayerStateChange
-      }
-    });
+    var pageVid = $('#page-video').val();
+    if (pageVid) {
+      player = new YT.Player('homepage-iframe', {
+        height: '390',
+        width: '640',
+        // TODO SMT somehow inject video id and store video id in database
+        videoId: pageVid,
+        events: {
+          'onReady': function () { },//noop
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
 
-    campaign = new YT.Player('homepage-campaign', {
-      height: '390',
-      width: '640',
-      // TODO SMT somehow inject video id and store video id in database
-      videoId: 'SgDJ-000uAc',
-      playerVars: {
-            controls: 0,
-            disablekb: 1,
-            autoPlay: 0
+    var vid = $('#campaign-video').val();
+    if (vid) {
+      campaign = new YT.Player('homepage-campaign', {
+        height: '390',
+        width: '640',
+        videoId: $('#campaign-video').val(),
+        playerVars: {
+          controls: 0,
+          disablekb: 1,
+          autoPlay: 0
         },
-      events: {
-        'onReady': function () {},//noop
-        'onStateChange': campaignStateChange
-      }
-    });
+        events: {
+          'onReady': function () { },//noop
+          'onStateChange': campaignStateChange
+        }
+      });
+      //campaign
+      $('.close').click(function () {
+        $('#campaign-video-modal').hide();
+        $('#campaign-entry-modal').hide();
+        $('#campaign-success-modal').hide();
+      });
+
+
+      //initial show
+      // cookie logic!
+      $('#campaign-video-modal').show();
+
+      $('#submit-campaign').click(function () {
+        var inputs = $('.campaign-input').toArray().map(function (ele, i) { return $(ele).val(); });
+        if (inputs[0] && inputs[1]) {
+          $('.campaign-error').hide()
+          $('#campaign-entry-modal').hide();
+          $('#campaign-success-modal').show();
+          //post here
+
+          var now = new moment();
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:3001/api/centry",
+            // The key needs to match your method's input parameter (case-sensitive).
+            data: JSON.stringify({
+              data: {
+                attributes: {
+                  bib: $('#bib-input').val(),
+                  name: $('#lname-input').val(),
+                  added: now.format('YYYY MM DD')
+                },
+                type: "centry",
+                relationships: {
+                  campaign: {
+                    data: {
+                      type: "campaigns",
+                      id: "1"
+                    }
+                  }
+                }
+              }
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+              //google analytics here
+              // ga('send', 'event', 'Campaign', 'Play', 'Campaign Video');
+
+            },
+            failure: function (errMsg) {
+              console.log('failure to post centry')
+            }
+          });
+
+          setTimeout(function () {
+            $('#campaign-success-modal').hide();
+          }, 3000)
+          // post inputs to api
+        } else {
+          $('.campaign-error').show()
+        }
+      });
+    }
   }
 } catch (e) {
 
 }
 
-//campaign
-$('.close').click(function () {
-    $('#campaign-video-modal').hide();
-    $('#campaign-entry-modal').hide();
-    $('#campaign-success-modal').hide();
-});
 
-
-//initial show
-// cookie logic!
-$('#campaign-video-modal').show();
-
-$('#submit-campaign').click(function () {
-  var inputs = $('.campaign-input').toArray().map(function (ele, i) { return $(ele).val(); });
-  if (inputs[0] && inputs[1]) {
-    $('.campaign-error').hide()
-    $('#campaign-entry-modal').hide();
-    $('#campaign-success-modal').show();
-    setTimeout(function () {
-      $('#campaign-success-modal').hide();
-    }, 3000)
-    // post inputs to api
-  } else {
-    $('.campaign-error').show()
-  }
-}); 
 
 //gallery code
 if (Vue && document.getElementById('gallery')) {
@@ -139,7 +182,7 @@ if (Vue && document.getElementById('gallery')) {
         }
         page++;
         images.data.forEach(function (image) {
-          var formatUrl = image.attributes.image_url; 
+          var formatUrl = image.attributes.image_url;
           formatUrl = formatUrl.split('upload/').join('upload/c_scale,w_' + 350 + '/');
           v.list.push({ url: formatUrl });
         });

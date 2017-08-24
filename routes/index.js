@@ -36,19 +36,26 @@ router.get('/', function(req, res, next) {
   var raceRequest = rp(apiurl + 'races?include=venue');
   var cardRequest = rp(apiurl + 'cards?filter[is_active]=true&sort=order');
   var sponsorRequest = rp(apiurl + 'sponsors?filter[is_active]=true');
-  Promise.all([homeRequest, raceRequest, cardRequest, sponsorRequest]).then(function (data) {
+  var campaignRequest = rp(apiurl + 'campaigns/1');
+  Promise.all([homeRequest, raceRequest, cardRequest, sponsorRequest, campaignRequest]).then(function (data) {
     var homepage = JSON.parse(data[0]).data.attributes;
+    homepage.video_id = homepage.video_url.split('=')[1];//parse video url
     var races = parseRacesWithVenues(JSON.parse(data[1]));
     var cards = _.map(JSON.parse(data[2]).data, function (c) { return c.attributes; });
     var sponsors = _.sampleSize(_.map(JSON.parse(data[3]).data, function (s) { return s.attributes; }), 3);
     imageUtil.processImageWidth(sponsors, 200);
+    var rawCampaign = JSON.parse(data[4]).data;//only campaign
+    var campaign = rawCampaign.attributes;
+    campaign.id = rawCampaign.id;
+    campaign.video_id = campaign.video_url.split('=')[1];//parse video url
 
     res.render('index', { 
       title: 'Wasatch Trail Series Home',
       races: races,
       homepage: homepage,
       cards: cards,
-      sponsors: sponsors
+      sponsors: sponsors,
+      campaign: campaign
     })
   });
 });
