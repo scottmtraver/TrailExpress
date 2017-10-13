@@ -76,9 +76,10 @@ if (Vue && document.getElementById('gallery')) {
         }
         page++;
         images.data.forEach(function (image) {
-          var formatUrl = image.attributes.image_url; 
-          formatUrl = formatUrl.split('upload/').join('upload/c_scale,w_' + 350 + '/');
-          v.list.push({ url: formatUrl });
+          var baseUrl = image.attributes.image_url; 
+          var formatUrl = baseUrl.split('upload/').join('upload/c_scale,w_' + 500 + '/');
+          var hqUrl = baseUrl.split('upload/').join('upload/c_scale,w_' + 1200 + '/');
+          v.list.push({ url: formatUrl, hqurl: hqUrl });
         });
         v.$broadcast('$InfiniteLoading:loaded');
       }
@@ -98,7 +99,7 @@ if (Vue && document.getElementById('gallery')) {
           action_properties: JSON.stringify({
             object: {
               'og:title': 'Wasatch Trail Series',
-              'og:image': item.url
+              'og:image': item.hqurl
             }
           })
         });
