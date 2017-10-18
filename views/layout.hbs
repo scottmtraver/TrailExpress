@@ -1,118 +1,116 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:fb="http://ogp.me/ns/fb#">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <meta property="og:image" content="http://localhost:3000/images/wasatchRunning.jpg" />
-    <title>{{ title }}</title>
-    <meta name="description" content="Wasatch Trail Run Series - The premiere Utah trail running series around the Wasatch mountains with over 6 locations and races ranging from 5k to half marathon">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/owlTheme.css">
-    <link rel="stylesheet" href="/stylesheets/owl.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation-flex.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
-    {{#if isDevelopment }}
-      <script src="http://localhost:35729/livereload.js"></script>
-    {{/if}}
-    {{#if isTest }}
-      <style type="text/css">
-      body {
-        border-top: 5px solid orange;
-      }
-      </style>
-    {{/if}}
-  </head>
-  <body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '656324984565700',
-      xfbml      : true,
-      version    : 'v2.9'
-    });
-    FB.AppEvents.logPageView();
-  };
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:image" content="http://localhost:3000/images/wasatchRunning.jpg" />
+  <title>{{ title }}</title>
+  <meta name="description" content="Wasatch Trail Run Series - The premiere Utah trail running series around the Wasatch mountains with over 6 locations and races ranging from 5k to half marathon">
+  <!--
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  -->
+  {{#if isTest }}
+  <style type="text/css">
+    body {
+      border-top: 5px solid orange;
+    }
+  </style>
+  {{/if}}
+  <style type="text/css">
+    body {
+      margin: 0 10px;
+    }
+    header, .logo-div, .menu-dropdown {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu {
+      flex-grow: .5
+    }
+    ul {
+      margin: 0;
+    }
+    li {
+      list-style-type: none;
+      padding: 10px;
+    }
+    li:hover {
+      border-bottom:2px solid red;
+    }
+    a {
+      text-decoration: none;
+    }
+    header {
+      background-color: #36B7E8;
+    }
+  </style>
+</head>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-    <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-      <button class="menu-icon" type="button" data-toggle></button>
-      <div class="title-bar-title">Menu</div>
-      <a class="" href="/">
-        <img src="/images/logoWhite.png" alt="logo" class="mobile-logo" />
-        <h1 class="mobile-logo-link">Home</h1>
-      </a>
+<body>
+  <header>
+    <div class="logo-div">
+      <h3>Wasatch Trail Series</h3>
+      <img src="" alt="WSTRS Logo">
+    </div>
+    <nav class="menu menu-right">
+      <ul class="menu-dropdown">
+        <li>
+          <a href="/Results">Race Schedule</a>
+        </li>
+        <li>
+          <a href="/Gallery" class="promoted-link">Photos!</a>
+        </li>
+        <li>
+          <a href="/Registration">Registration / Discounted Race Pass</a>
+        </li>
+        <li>
+          <a href="/Series">Categories & Points</a>
+        </li>
+        <li>
+          <a href="/Results">Results</a>
+        </li>
+        <li>
+          <a href="/Sponsors">Sponsors</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section class="hero">
+    <div>
+      <h1>Wasatch Trail Series</h1>
+      <img src="" alt="Mountain Background">
     </div>
 
-    <div class="top-bar" id="example-menu">
-      <div class="top-bar-left show-for-medium">
-        <ul class="menu">
-          <a class="menu-text" href="/">
-            <img src="/images/logoWhite.png" alt="logo" class="logo" />
-            <h1 class="logo-link">Home</h1>
-          </a>
-        </ul>
-      </div>
+  </section>
 
-      <div class="top-bar-right">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li><a href="/Results">Race Schedule</a></li>
-          <li><a href="/Gallery" class="promoted-link">Photos!</a></li>
-          <li><a href="/Registration">Registration / Discounted Race Pass</a></li>
-          <br class="show-for-small-only"/>
-          <br class="show-for-medium-only"/>
-          <li><a href="/Series">Categories & Points</a></li>
-          <li><a href="/Results">Results</a></li>
-          <li><a href="/Sponsors">Sponsors</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="mobile-title show-for-small-only">
-      <h2>Wasatch Trail Run Series</h2>
-    </div>
-    <div class="hero-image">
-      <h1 class="show-for-medium">Wasatch Trail Run Series</h1>
-      <!--
-      <img src="/img/salomon-logo-white.png" alt="logo" class="home-sponsor home-sponsor-right show-for-medium" />
-      <img src="/img/north-face-red.png" alt="logo" class="home-sponsor home-sponsor-left show-for-medium" style="opacity:.75" />
+  <div class="main">
+
+    <!--
+        Put back body thing
       -->
-    </div>
-    <div class="main">
 
-      {{{body}}}
+  </div>
+  <footer class="footer">
+    <hr/>
+    <span>Website by:
+      <a target="_blank" href="http://www.highpeaksolutions.com">High Peak Solutions</a>
+    </span>
+  </footer>
+  {{#if isProduction}}
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    </div>
-    <div class="footer">
-      <span>Website by: <a target="_blank" href="http://www.highpeaksolutions.com">High Peak Solutions</a></span>
-    </div>
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src="/javascripts/owl.carousel.js"></script>
-    <script src="https://cdn.jsdelivr.net/foundation/6.1.2/foundation.min.js"></script>
-    <script src="/javascripts/moment.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-    <script src="/javascripts/infini-view.js"></script>
-    <script src="/javascripts/client.js"></script>
-    {{#if isProduction}}
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-74667794-1', 'auto');
+    ga('send', 'pageview');
 
-      ga('create', 'UA-74667794-1', 'auto');
-      ga('send', 'pageview');
+  </script> {{/if}}
+</body>
 
-    </script>
-    {{/if}}
-  </body>
 </html>
