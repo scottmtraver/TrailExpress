@@ -7,9 +7,7 @@
   <meta property="og:image" content="http://localhost:3000/images/wasatchRunning.jpg" />
   <title>{{ title }}</title>
   <meta name="description" content="Wasatch Trail Run Series - The premiere Utah trail running series around the Wasatch mountains with over 6 locations and races ranging from 5k to half marathon">
-  <!--
   <link rel="stylesheet" href="/stylesheets/style.css">
-  -->
   {{#if isTest }}
   <style type="text/css">
     body {
@@ -18,44 +16,19 @@
   </style>
   {{/if}}
   <style type="text/css">
-    body {
-      margin: 0 10px;
-    }
-    header, .logo-div, .menu-dropdown {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .menu {
-      flex-grow: .5
-    }
-    ul {
-      margin: 0;
-    }
-    li {
-      list-style-type: none;
-      padding: 10px;
-    }
-    li:hover {
-      border-bottom:2px solid red;
-    }
-    a {
-      text-decoration: none;
-    }
-    header {
-      background-color: #36B7E8;
-    }
+    
   </style>
 </head>
 
 <body>
   <header>
     <div class="logo-div">
-      <h3>Wasatch Trail Series</h3>
-      <img src="" alt="WSTRS Logo">
+      <img src="./images/logoWhite.png" alt="WSTRS Logo">
     </div>
-    <nav class="menu menu-right">
-      <ul class="menu-dropdown">
+    <nav class="menu">
+      <div id="menu-control" class="menu-icon">
+      </div>
+      <ul id="menu-list" class="menu-dropdown menu-hidden">
         <li>
           <a href="/Results">Race Schedule</a>
         </li>
@@ -63,7 +36,7 @@
           <a href="/Gallery" class="promoted-link">Photos!</a>
         </li>
         <li>
-          <a href="/Registration">Registration / Discounted Race Pass</a>
+          <a href="/Registration">Registration / Race Pass</a>
         </li>
         <li>
           <a href="/Series">Categories & Points</a>
@@ -111,6 +84,20 @@
     ga('send', 'pageview');
 
   </script> {{/if}}
+  <script>
+    (function () {
+      document.getElementById('menu-control').onclick = function () {
+        var menuList = document.getElementById('menu-list');
+        if (menuList.classList.contains('menu-hidden')) {
+          menuList.classList.remove('menu-hidden');
+        } else {
+          menuList.classList.add('menu-hidden');
+        }
+      }
+
+    }())
+
+  </script>
 </body>
 
 </html>
