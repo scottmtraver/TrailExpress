@@ -7,8 +7,8 @@
   <meta property="og:image" content="http://localhost:3000/images/wasatchRunning.jpg" />
   <title>{{ title }}</title>
   <meta name="description" content="Wasatch Trail Run Series - The premiere Utah trail running series around the Wasatch mountains with over 6 locations and races ranging from 5k to half marathon">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  {{#if isTest }}
+  <link rel="stylesheet" href="/stylesheets/style.css"> {{#if isTest }}
+  <!-- Map by Linseed Studio from the Noun Project -->
   <style type="text/css">
     body {
       border-top: 5px solid orange;
@@ -16,19 +16,18 @@
   </style>
   {{/if}}
   <style type="text/css">
-    
   </style>
 </head>
 
 <body>
   <header>
-    <div class="logo-div">
-      <img src="./images/logoWhite.png" alt="WSTRS Logo">
-    </div>
     <nav class="menu">
-      <div id="menu-control" class="menu-icon">
-      </div>
-      <ul id="menu-list" class="menu-dropdown menu-hidden">
+      <ul id="menu-list" class="navigation navigation-hidden">
+        <li>
+          <div id="menu-control" class="menu-icon">
+            <img src="./images/map.svg" alt="Map Icon" />
+          </div>
+        </li>
         <li>
           <a href="/Results">Race Schedule</a>
         </li>
@@ -49,6 +48,9 @@
         </li>
       </ul>
     </nav>
+    <div class="logo-div">
+      <img src="./images/logoWhite.png" alt="WSTRS Logo">
+    </div>
   </header>
   <section class="hero">
     <div>
@@ -88,10 +90,10 @@
     (function () {
       document.getElementById('menu-control').onclick = function () {
         var menuList = document.getElementById('menu-list');
-        if (menuList.classList.contains('menu-hidden')) {
-          menuList.classList.remove('menu-hidden');
+        if (menuList.classList.contains('navigation-hidden')) {
+          menuList.classList.remove('navigation-hidden');
         } else {
-          menuList.classList.add('menu-hidden');
+          menuList.classList.add('navigation-hidden');
         }
       }
 
