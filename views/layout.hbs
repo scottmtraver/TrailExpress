@@ -53,11 +53,6 @@
     </nav>
   </header>
   <section class="hero">
-    <div>
-      <h1>Wasatch Trail Series</h1>
-      <img src="" alt="Mountain Background">
-    </div>
-
   </section>
 
   <div class="main" style="height:1000px;background:red;">
@@ -92,8 +87,10 @@
         var menuList = document.getElementById('menu-list');
         if (menuList.classList.contains('navigation-hidden')) {
           menuList.classList.remove('navigation-hidden');
+          menuList.classList.add('navigation-open');
         } else {
           menuList.classList.add('navigation-hidden');
+          menuList.classList.remove('navigation-open');
         }
       }
 
