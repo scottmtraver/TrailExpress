@@ -39,3 +39,4 @@ jspm_packages
 docker-env
 .envpublic/stylesheets/style.css
 .env
+style.css

@@ -16,7 +16,11 @@ header {
   -webkit-transition: background .25s ease-in-out;
 }
 header.header-scrolled {
-  background: #888888;
+  background: lightgray;
+  .navigation a {
+    text-shadow: initial;
+    color: gray;
+  }
 }
 
 ul {
@@ -49,6 +53,10 @@ a {
   display: block;
   padding: 1em;
   color: white;
+  text-shadow: 1px 1px gray;
+  transition: color .25s ease-in-out;
+  -moz-transition: color .25s ease-in-out;
+  -webkit-transition: color .25s ease-in-out;
 }
 
 .navigation a:hover {
@@ -64,13 +72,49 @@ a {
   height: 110px;
   width: 100px;
 }
-.hero {
+.main {
   background: url("../images/background.jpg");
+  background-repeat: no-repeat;
   background-position: top;
-  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 125px;
+
+  h2 {
+    font-size: 4em;
+    color: #36b7e8;
+  }
+  .hero-card {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+
+    h3 {
+      color: white;
+      font-size: 2em;
+      text-shadow: 2px 2px black;
+    }
+  }
+
+  .page-content {
+    width: 90%;
+    background-color: white;
+    height: 1000px;
+    border-radius: 5px;
+  }
 }
 
 @media all and (max-width: 900px) {
+  header.header-scrolled {
+    background-color: initial;
+    .menu-icon {
+      background-color: lightgray;
+      opacity: .5;
+    }
+  }
   .navigation {
     -webkit-flex-flow: column wrap;
     flex-flow: column wrap;
@@ -113,7 +157,31 @@ a {
     -moz-transition: display .25s ease-in-out;
     -webkit-transition: display .25s ease-in-out;
   }
+  header.header-scrolled {
+    .navigation-open {
+    .menu-icon {
+      opacity: 1;
+      background-color: #888888;
+    }
+    a {
+      color: white;
+    }
+
+    }
+  }
   .navigation-open {
     background: #888888;
+  }
+  .main {
+    h2 {
+      font-size: 3em;
+      text-align: center;
+    }
+
+    .hero-card {
+      h3 {
+        font-size: 1.5em;
+      }
+    }
   }
 }
