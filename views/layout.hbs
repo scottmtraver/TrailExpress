@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <header>
+  <header id="primary-header">
     <nav class="menu">
       <div class="logo-div">
         <img src="./images/logoWhite.png" alt="WSTRS Logo">
@@ -29,6 +29,7 @@
         <li>
           <div id="menu-control" class="menu-icon">
             <img src="./images/map.svg" alt="Map Icon" />
+            <span>Menu</span>
           </div>
         </li>
         <li>
@@ -53,9 +54,19 @@
     </nav>
   </header>
   <section class="hero">
+    <!--
+
+    <h2>Wasatch Trail Series</h2>
+    <div class="hero-card">
+      <h3>This is some text here</h3>
+      <h3>Three lines of text</h3>
+      <h3>Third line of text here</h3>
+
+    </div>
+    -->
   </section>
 
-  <div class="main" style="height:1000px;background:red;">
+  <div class="main" style="height:1000px;">
 
     <!--
         Put back body thing
@@ -92,8 +103,15 @@
           menuList.classList.add('navigation-hidden');
           menuList.classList.remove('navigation-open');
         }
-      }
-
+      };
+      document.addEventListener('scroll', function (event) {
+        var header = document.getElementById('primary-header');
+        if (window.scrollY > 64) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+      });
     }())
 
   </script>
