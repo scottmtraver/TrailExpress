@@ -1,3 +1,18 @@
+<div class="hero-card-list">
+  {{#each cards}}
+    {{#if @first}}
+      <div class="hero-card showing-card">
+    {{else}}
+      <div class="hero-card">
+    {{/if}}
+      {{{ content }}}
+    </div>
+  {{/each}}
+</div>
+<div class="page-content">
+
+</div>
+<!--
 <div class="row show-for-medium">
   <div class="medium-11 medium-centered columns">
     <div class="owl-carousel hero-flipper">
@@ -59,7 +74,6 @@
           <div class="flex-video">
             {{{ homepage.video_url }}}
           </div>
-          <!--
           <div class="row">
             <div class="small-6 columns">
               <img src="/images/north-face-red.png" alt="logo" class="home-sponsor-below-video" />
@@ -67,7 +81,6 @@
             <div class="small-6 columns">
             </div>
           </div>
-          -->
         </div>
       </div>
     </div>
@@ -125,3 +138,4 @@
 </div>
 
 </div>
+-->

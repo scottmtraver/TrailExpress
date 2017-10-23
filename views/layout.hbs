@@ -7,7 +7,8 @@
   <meta property="og:image" content="http://localhost:3000/images/wasatchRunning.jpg" />
   <title>{{ title }}</title>
   <meta name="description" content="Wasatch Trail Run Series - The premiere Utah trail running series around the Wasatch mountains with over 6 locations and races ranging from 5k to half marathon">
-  <link rel="stylesheet" href="/stylesheets/style.css"> {{#if isTest }}
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  {{#if isTest }}
   <!-- Map by Linseed Studio from the Noun Project -->
   <style type="text/css">
     body {
@@ -55,14 +56,7 @@
   </header>
   <section class="main">
     <h2>Wasatch Trail Series</h2>
-    <div class="hero-card">
-      <h3>This is some text here</h3>
-      <h3>Three lines of text</h3>
-      <h3>Third line of text here</h3>
-    </div>
-    <div class="page-content">
-
-    </div>
+    {{{body}}}
   </section>
 
   <footer class="footer">
@@ -104,6 +98,20 @@
           header.classList.remove('header-scrolled');
         }
       });
+      setInterval(function () {
+        var current = document.getElementsByClassName('hero-card showing-card');
+        if (current.length) {
+          current = current[0];
+          if(current.nextElementSibling && current.nextElementSibling.classList.contains('hero-card')) {
+            current.classList.remove('showing-card');
+            current.nextElementSibling.classList.add('showing-card');
+          } else {
+            current.classList.remove('showing-card');
+            var first = document.getElementsByClassName('hero-card')[0];
+            first.classList.add('showing-card');
+          }
+        }
+      }, 5000);
     }())
 
   </script>

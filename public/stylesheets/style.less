@@ -6,6 +6,14 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}  
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
 
 header {
   position: fixed;
@@ -86,16 +94,31 @@ a {
     font-size: 4em;
     color: #36b7e8;
   }
-  .hero-card {
+
+  .hero-card-list {
     width: 80%;
     display: flex;
     flex-direction: column;
     margin: 25px;
+    height: 150px;
+    justify-content: flex-end;
 
-    h3 {
+    .hero-card {
+      display: none;
+    }
+    .hero-card.showing-card {
+        display: initial;
+        -webkit-animation: fadeIn 2s;
+        animation: fadeIn 2s;
+    }
+    div {
       color: white;
       font-size: 2em;
       text-shadow: 2px 2px black;
+
+      p {
+        margin: 0;
+      }
     }
   }
 
@@ -178,8 +201,8 @@ a {
       text-align: center;
     }
 
-    .hero-card {
-      h3 {
+    .hero-card-list {
+      div {
         font-size: 1.5em;
       }
     }
