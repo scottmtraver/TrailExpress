@@ -125,12 +125,43 @@ a {
   .page-content {
     width: 90%;
     background-color: white;
-    height: 1000px;
     border-radius: 5px;
+
+    display: flex;
+    flex-flow: row wrap;
+
+    .page-content-area {
+      padding: 25px;
+      &.page-text {
+        flex: 2 0px;
+      }
+      &.page-aside {
+      }
+    }
+    .more-control {
+      display: none;
+    }
   }
 }
-
 @media all and (max-width: 900px) {
+  .main {
+    .page-content {
+      .page-content-area {
+        flex: 1 100%;
+      }
+      .page-text.homepage-text.show-less {
+        height: 125px;
+        overflow: hidden;
+      }
+      .more-control {
+        flex: 1 100%;
+        display: initial;
+        text-align: center;
+        color: lightblue;
+      }
+    }
+  }
+
   header.header-scrolled {
     background-color: initial;
     .menu-icon {

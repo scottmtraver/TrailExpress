@@ -90,6 +90,11 @@
           menuList.classList.remove('navigation-open');
         }
       };
+      document.getElementsByClassName('more-control')[0].onclick = function (event) {
+        var more = document.getElementsByClassName('show-less')[0];
+        more.classList.remove('show-less');
+        event.target.remove();
+      };
       document.addEventListener('scroll', function (event) {
         var header = document.getElementById('primary-header');
         if (window.scrollY > 64) {
