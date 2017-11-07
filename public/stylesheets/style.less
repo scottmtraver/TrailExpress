@@ -123,6 +123,7 @@ a {
   }
 
   .page-content {
+    font-size: 1.1em;
     width: 90%;
     background-color: white;
     border-radius: 5px;
@@ -132,16 +133,32 @@ a {
 
     .page-content-area {
       padding: 25px;
+      flex: 1.5 0;
+
       &.page-text {
         flex: 2 0px;
       }
       &.page-aside {
+        text-align: center;
       }
     }
     .more-control {
       display: none;
     }
   }
+}
+.social-group {
+  display: flex;
+  justify-content: space-evenly;
+
+  .social-icon img {
+    width: 50px;
+  }
+}
+
+#ytplayer {
+  height: 300px;
+  width: 500px;
 }
 @media all and (max-width: 900px) {
   .main {
@@ -150,7 +167,7 @@ a {
         flex: 1 100%;
       }
       .page-text.homepage-text.show-less {
-        height: 125px;
+        height: 135px;
         overflow: hidden;
       }
       .more-control {
@@ -237,5 +254,9 @@ a {
         font-size: 1.5em;
       }
     }
+  }
+  #ytplayer {
+    height: 150px;
+    width: 300px;
   }
 }
