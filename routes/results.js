@@ -22,6 +22,8 @@ function parseRacesWithVenues (racesData) {
     race.venue = _.find(venues, function (v) { return v.id == r.relationships.venue.data.id; }).venue;
     ret.push(race)
   });
+  // only display this years races
+  _.remove(ret, function (r) { return moment(r.date).year() != moment().year(); })
   ret.sort(function (a, b) {
     return moment.utc(a.date).diff(moment.utc(b.date));
   });
