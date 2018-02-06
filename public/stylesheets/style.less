@@ -3,7 +3,8 @@ body {
   margin: 0;
 }
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+  margin: 5px;
+  text-align: center;
 }
 
 @-webkit-keyframes fadeIn {
@@ -147,6 +148,18 @@ a {
     }
   }
 }
+.races-table {
+  padding-top: 10px;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 25px;
+
+  tr:nth-child(even) {background: #f3f3f3}
+
+  td {
+    padding: 10px 5px;
+  }
+}
 .social-group {
   display: flex;
   justify-content: space-evenly;
@@ -155,20 +168,47 @@ a {
     width: 50px;
   }
 }
+.sponsors {
+  display: flex;
+  justify-content: space-between;
+}
+.sponsors a img {
+  max-height: 100px;
+}
 
 #ytplayer {
   height: 300px;
   width: 500px;
 }
+@media all and (min-width: 900px) {
+  .races-table-mobile {
+    display: none;
+  }
+}
 @media all and (max-width: 900px) {
   .main {
+    h2 {
+      font-size: 3em;
+      text-align: center;
+    }
+
+    .hero-card-list {
+      div {
+        font-size: 1.5em;
+      }
+    }
     .page-content {
+      padding: 10px;
       .page-content-area {
+        padding: 0;
         flex: 1 100%;
       }
-      .page-text.homepage-text.show-less {
-        height: 135px;
-        overflow: hidden;
+      .page-text.homepage-text {
+        padding: 25px;
+        &.show-less {
+          height: 135px;
+          overflow: hidden;
+        }
       }
       .more-control {
         flex: 1 100%;
@@ -243,17 +283,27 @@ a {
   .navigation-open {
     background: #888888;
   }
-  .main {
-    h2 {
-      font-size: 3em;
-      text-align: center;
-    }
+  .races-table {
+    display: none;
+  }
+  .races-table-mobile {
+    padding-top: 10px;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 25px;
 
-    .hero-card-list {
-      div {
-        font-size: 1.5em;
-      }
+    tr:nth-child(even) {background: #f3f3f3}
+
+    td {
+      padding: 10px 5px;
+      min-width: 70px;
     }
+    .date-slash {
+      min-width: 100px;
+    }
+  }
+  .sponsors a img {
+    max-width: 100px;
   }
   #ytplayer {
     height: 150px;

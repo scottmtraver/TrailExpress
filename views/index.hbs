@@ -1,42 +1,111 @@
 <div class="hero-card-list">
-  {{#each cards}}
-    {{#if @first}}
-      <div class="hero-card showing-card">
+  {{#each cards}} {{#if @first}}
+  <div class="hero-card showing-card">
     {{else}}
-      <div class="hero-card">
-    {{/if}}
-      {{{ content }}}
+    <div class="hero-card">
+      {{/if}} {{{ content }}}
     </div>
-  {{/each}}
-</div>
-<div class="page-content">
-  <div class="page-content-area page-text homepage-text show-less">
-    {{{ homepage.content }}}
+    {{/each}}
   </div>
-  <div class="more-control">Read More</div>
-  <div class="page-content-area page-aside">
-    <div id="ytplayer">
-
+  <div class="page-content">
+    <div class="page-content-area page-text homepage-text show-less">
+      {{{ homepage.content }}}
     </div>
-<!--
+    <div class="more-control">Read More</div>
+    <div class="page-content-area page-aside">
+      <div id="ytplayer">
+
+      </div>
+      <!--
     <iframe id="ytplayer" type="text/html" 
   src="https://www.youtube.com/embed/jvFEqMU0eyI"
   frameborder="0"></iframe>
   -->
-  <div class="social-group">
-    <div class="social-icon social-fb">
-      <img src="/images/fb.svg" alt="facebook logo" />
-    </div>
-    <div class="social-icon social-insta">
-      <img src="/images/insta.svg" alt="instagram logo" />
-    </div>
-    <div class="social-icon social-email">
-      <img src="/images/email.svg" alt="email symbol" />
+      <div class="social-group">
+        <div class="social-icon social-fb">
+          <img src="/images/fb.svg" alt="facebook logo" />
+        </div>
+        <div class="social-icon social-insta">
+          <img src="/images/insta.svg" alt="instagram logo" />
+        </div>
+        <div class="social-icon social-email">
+          <img src="/images/email.svg" alt="email symbol" />
+        </div>
+      </div>
     </div>
   </div>
+  <div class="page-content">
+    <div class="page-content-area race-table">
+      <hr>
+      <h3>Series Races</h3>
+      <table class="races-table">
+        <thead>
+          <tr>
+            <th class="show-for-large">Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th></th>
+            </th>
+        </thead>
+        <tbody class="races">
+          {{#each races }} {{#if isFuture}}
+          <tr class="is-future">
+            {{else}}
+            <tr>
+              {{/if}}
+              <td class="show-for-large">{{ name }}</td>
+              <td class="date-slash">{{ seodate }}</td>
+              <td>{{ start_time }}</td>
+              <td>{{ venue.name }}</td>
+              <td>
+                {{#if results_url }}
+                <a href="/race/{{ seodate }}">Results</a>
+                {{else}}
+                <a href="/race/{{ seodate }}">Info</a>
+                {{/if}}
+              </td>
+            </tr>
+            {{/each}}
+        </tbody>
+      </table>
+      <!-- Both tables adapted by css -->
+      <table class="races-table-mobile">
+        <tbody class="races">
+          {{#each races }} {{#if isFuture}}
+          <tr class="is-future">
+            {{else}}
+            <tr>
+              {{/if}}
+              <td colspan=4>{{ name }}</td>
+            </tr>
+            <tr>
+              <td class="date-slash">{{ seodate }}</td>
+              <td calss="start-time">{{ start_time }}</td>
+              <td>{{ venue.name }}</td>
+              <td>
+                {{#if results_url }}
+                <a href="/race/{{ seodate }}">Results</a>
+                {{else}}
+                <a href="/race/{{ seodate }}">Info</a>
+                {{/if}}
+              </td>
+            </tr>
+            {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-<!--
+  <div class="page-content">
+    <div class="page-content-area sponsors">
+        {{#each sponsors }}
+        <a href="{{ link_url }}" target="_blank" class="side-sponsor">
+          <img class="sponsor-thumbnail" src="{{ image_url }}" />
+        </a>
+        {{/each}}
+    </div>
+  </div>
+  <!--
 <div class="row show-for-medium">
   <div class="medium-11 medium-centered columns">
     <div class="owl-carousel hero-flipper">

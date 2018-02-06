@@ -1,7 +1,7 @@
-<div class="row sponsor-main">
-  <div class="small-12 columns">
-    <h4>All Races</h4>
-    <table class="races-table" href="#Races">
+<div class="page-content">
+  <div class="page-content-area race-table">
+    <h3>Series Races</h3>
+    <table class="races-table">
       <thead>
         <tr>
           <th class="show-for-large">Name</th>
@@ -9,42 +9,62 @@
           <th>Time</th>
           <th>Location</th>
           <th></th>
-        </th>
+          </th>
       </thead>
-      <tbody>
-        {{#each races }}
-        {{#if isFuture}}
-          <tr class="is-future">
-        {{else}}
+      <tbody class="races">
+        {{#each races }} {{#if isFuture}}
+        <tr class="is-future">
+          {{else}}
           <tr>
-        {{/if}}
+            {{/if}}
             <td class="show-for-large">{{ name }}</td>
-            <td class="date-slash">{{ date }}</td>
+            <td class="date-slash">{{ seodate }}</td>
             <td>{{ start_time }}</td>
             <td>{{ venue.name }}</td>
             <td>
               {{#if results_url }}
-                <a href="/race/{{ seodate }}">Results</a>
+              <a href="/race/{{ seodate }}">Results</a>
               {{else}}
-                <a href="/race/{{ seodate }}">Info</a>
+              <a href="/race/{{ seodate }}">Info</a>
               {{/if}}
             </td>
           </tr>
-        {{/each}}
+          {{/each}}
       </tbody>
     </table>
-    <!--
-    <a class="old-results-link" href="/2016Results">2016 Results</a>
-    <a class="old-results-link" href="http://old.runontrails.com/Race_Results.html">2015 Results</a>
-    -->
+    <!-- Both tables adapted by css -->
+    <table class="races-table-mobile">
+      <tbody class="races">
+        {{#each races }} {{#if isFuture}}
+        <tr class="is-future">
+          {{else}}
+          <tr>
+            {{/if}}
+            <td colspan=4>{{ name }}</td>
+          </tr>
+          <tr>
+            <td class="date-slash">{{ seodate }}</td>
+            <td calss="start-time">{{ start_time }}</td>
+            <td>{{ venue.name }}</td>
+            <td>
+              {{#if results_url }}
+              <a href="/race/{{ seodate }}">Results</a>
+              {{else}}
+              <a href="/race/{{ seodate }}">Info</a>
+              {{/if}}
+            </td>
+          </tr>
+          {{/each}}
+      </tbody>
+    </table>
   </div>
-  <div class="small-12 columns">
-    <hr/>
+</div>
+<div class="page-content">
+  <div class="page-content-area sponsors">
     {{#each sponsors }}
-    <a href="{{ link_url }}" target="_blank" class="bottom-sponsor">
-      <img class="sponsor-thumbnail" src="{{ image_url }}"/>
+    <a href="{{ link_url }}" target="_blank" class="side-sponsor">
+      <img class="sponsor-thumbnail" src="{{ image_url }}" />
     </a>
     {{/each}}
   </div>
 </div>
-
