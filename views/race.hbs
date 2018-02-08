@@ -31,17 +31,17 @@
       <h4 class="race-special">{{ race.name }}</h4>
     </div>
     <div class="large-4 columns sponsor show-for-large">
-      <h4>Sponsor</h4>
       {{#if race.sponsor }}
+        <h4>Sponsor</h4>
         <a href="{{ race.sponsor.link_url }}" target="_blank">
           <img class="sponsor-image" src="{{ race.sponsor.image_url }}" alt="Sponsor" />
         </a>
         <h4>{{ race.sponsor.name }}</h4>
-      {{else}}
+      {{!-- {{else}}
         <a href="{{ raceSponsor.link_url }}" target="_blank">
           <img class="sponsor-image" src="{{ raceSponsor.image_url }}" alt="Sponsor" />
         </a>
-        <h4>{{ raceSponsor.name }}</h4>
+        <h4>{{ raceSponsor.name }}</h4> --}}
       {{/if}}
     </div>
   </div>

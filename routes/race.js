@@ -37,9 +37,9 @@ router.get('/:date', function(req, res, next) {
     var race = _.find(races, function (r) { 
         return r.seodate == req.params.date;
     });
-    if(!race.sponsor) {
-        race.sponsor = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 1)[0];// pick 1
-    }
+    // if(!race.sponsor) {
+    //     race.sponsor = _.sampleSize(_.map(JSON.parse(data[1]).data, function (s) { return s.attributes; }), 1)[0];// pick 1
+    // }
 
     res.render('race', { 
       title: 'Wasatch Trail Series Race',
